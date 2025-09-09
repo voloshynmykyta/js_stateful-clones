@@ -8,7 +8,7 @@
  */
 function transformStateWithClones(state, actions) {
   const stateHistory = [];
-  const stateCopy = structuredClone(state);
+  let stateCopy = { ...state };
   const ADD_TYPE = 'addProperties';
   const REMOVE_TYPE = 'removeProperties';
   const CLEAR_TYPE = 'clear';
@@ -29,6 +29,8 @@ function transformStateWithClones(state, actions) {
         for (const key in stateCopy) {
           delete stateCopy[key];
         }
+
+        stateCopy = {};
         break;
 
       default:
